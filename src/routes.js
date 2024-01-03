@@ -1,6 +1,14 @@
 import React from 'react'
 
+// MainFeatures
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
+const AIassistant = React.lazy(() => import('./views/dashboard/AIassistant'))
+const Portfolio = React.lazy(() => import('./views/dashboard/Portfolio'))
+const DataAnalysis = React.lazy(() => import('./views/dashboard/DataAnalysis'))
+const TransactionTracking = React.lazy(() => import('./views/dashboard/TransactionTracking'))
+const NLP = React.lazy(() => import('./views/dashboard/NLP'))
+
+// Themes
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
@@ -52,7 +60,12 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
-  { path: '/dashboard', name: 'Dashboard', element: Dashboard },
+  { path: '/dashboard/Dashboard', name: 'Dashboard', element: Dashboard },
+  { path: '/dashboard/AIassistant', name: 'AIassistant', element: AIassistant },
+  { path: '/dashboard/Portfolio', name: 'Portfolio', element: Portfolio },
+  { path: '/dashboard/DataAnalysis', name: 'DataAnalysis', element: DataAnalysis },
+  { path: '/dashboard/TT', name: 'TransactionTracking', element: TransactionTracking },
+  { path: '/dashboard/NLP', name: 'NLP', element: NLP },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },

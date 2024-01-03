@@ -1,17 +1,16 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
 import {
-  cilBell,
-  cilCalculator,
-  cilChartPie,
-  cilCursor,
+  cilAperture,
   cilDescription,
   cilDrop,
-  cilNotes,
+  cilGem,
+  cilLanguage,
   cilPencil,
-  cilPuzzle,
   cilSpeedometer,
   cilStar,
+  cilTransfer,
+  cilVector,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
@@ -19,12 +18,42 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Dashboard',
-    to: '/dashboard',
+    to: '/dashboard/Dashboard',
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    },
+  },
+  {
+    component: CNavTitle,
+    name: 'Main App Features',
+  },
+  {
+    component: CNavItem,
+    name: 'AI assistant',
+    to: '/dashboard/AIassistant',
+    icon: <CIcon icon={cilGem} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Portfolio',
+    to: '/dashboard/Portfolio',
+    icon: <CIcon icon={cilAperture} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Data Analysis',
+    to: '/dashboard/DataAnalysis',
+    icon: <CIcon icon={cilVector} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Transaction Tracking',
+    to: '/dashboard/TT',
+    icon: <CIcon icon={cilTransfer} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'NLP',
+    to: '/dashboard/NLP',
+    icon: <CIcon icon={cilLanguage} customClassName="nav-icon" />,
   },
   {
     component: CNavTitle,
@@ -42,7 +71,8 @@ const _nav = [
     to: '/theme/typography',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
-  {
+
+  /*{
     component: CNavTitle,
     name: 'Components',
   },
@@ -258,11 +288,8 @@ const _nav = [
     name: 'Widgets',
     to: '/widgets',
     icon: <CIcon icon={cilCalculator} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    },
-  },
+  },*/
+
   {
     component: CNavTitle,
     name: 'Extras',
