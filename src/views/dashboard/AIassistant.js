@@ -1,31 +1,19 @@
-import React, { useState } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react';
+import axios from 'axios';
 import { CButton } from '@coreui/react';
 
-const AIassistant = () => {
-    const [userInput, setUserInput] = useState('');
-    const [conversation, setConversation] = useState([]);
+function AIassistant() {
+    const [input, setInput] = useState('');
+    const [responses, setResponses] = useState([]);
 
-    const handleInputChange = (event) => {
-        setUserInput(event.target.value);
-    };
-
-    const sendMessage = async () => {
-        const payload = {
-            model: "text-davinci-003", // or your specific model
-            prompt: userInput,
-            temperature: 0.7,
-        };
-
-        const response = await axios.post("https://api.openai.com/v1/completions", payload, {
-            headers: {
-                'Authorization': `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
-                'Content-Type': 'application/json'
-            }
-        });
-
-        setConversation([...conversation, { user: userInput, bot: response.data.choices[0].text }]);
-        setUserInput('');
+    const sendQuery = async () => {
+        try {
+            const response = await axios.post('http://localhost:3000/chat', { input });
+            setResponses([...responses, response.data]);
+            setInput('');
+        } catch (error) {
+            console.error('Error sending query:', error);
+        }
     };
 
     return (
@@ -38,21 +26,19 @@ const AIassistant = () => {
                         className='shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                         rows={4}
                         placeholder='Type your message here...'
-                        value={userInput}
-                        onChange={handleInputChange}>
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}>
                     </textarea>
                     <div className='mb-6'>
                         <CButton 
                             color='primary'
-                            onClick={sendMessage}>
+                            onClick={sendQuery}>
                             Send
                         </CButton>
                     </div>
                     <div className='mt-4 p-4 border rounded bg-black shadow-lg'>
-                        {conversation.map((msg, index) => (
-                            <p key={index} className={`mb-2 ${msg.user ? 'text-blue-600' : 'text-green-600'}`}>
-                                <b>{msg.user ? 'You: ' : 'Bot: '}</b> {msg.user || msg.bot}
-                            </p>
+                        {responses.map((resp, index) => (
+                            <p key={index}>{resp.choices[0].text}</p>
                         ))}
                     </div>
                 </div>
